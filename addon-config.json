@@ -1,0 +1,6 @@
+{
+  "containerLogs": {"enabled": true},
+  "applicationSignals": {"enabled": true},
+  "containerInsights": {"enabled": false},
+  "otelContainerInsights": {"enabled": true}
+}
