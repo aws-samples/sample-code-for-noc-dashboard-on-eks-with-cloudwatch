@@ -121,6 +121,12 @@ Run the offline tests with `python3 -m unittest discover -s tests`.
 
 Remove the add-on and the sample application too if you installed them only for this walkthrough.
 
+## Security considerations
+
+Before sharing a dashboard, review [Sharing CloudWatch dashboards](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-dashboard-sharing.html). Shared viewers use a Cognito-backed role whose `cloudwatch:GetMetricData` and `ec2:DescribeTags` permissions cannot be limited to particular metrics or EC2 instances. A shared viewer can query all CloudWatch metrics and EC2 names and tags in the account; with a public share, anyone holding the link receives that access.
+
+CloudWatch hides Logs Insights widgets on shared dashboards by default. This sample also keeps its only log widget on `<cluster>-incident-response`; the NOC log manifest is empty. Authorized incident-response viewers can see application log content, so restrict dashboard and Logs permissions and apply [CloudWatch Logs data protection policies](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/mask-sensitive-log-data.html) before using logs that may contain sensitive data. Do not share the dashboard publicly unless broad metric and tag visibility is acceptable.
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
